@@ -6,6 +6,6 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="ru.nstu.galkin.list.ui.ListFragment"
+        android:name="ru.nstu.galkin.features.list.ui.ListFragment"
         android:label="HomeFragment" />
 </navigation>

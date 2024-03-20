@@ -15,10 +15,8 @@ dependencyResolutionManagement {
 
 rootProject.name = "TestTask"
 include(":app")
-include(":core")
 include(":core:network")
-include(":data")
-include(":features")
 include(":features:list")
-include(":core:theme")
-include(":features:deteils")
+include(":features:details")
+include(":data:network")
+include(":data:database")

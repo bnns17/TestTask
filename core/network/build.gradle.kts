@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "ru.nstu.galkin.network"
+    namespace = "ru.nstu.galkin.core.network"
     compileSdk = 34
 
     defaultConfig {
