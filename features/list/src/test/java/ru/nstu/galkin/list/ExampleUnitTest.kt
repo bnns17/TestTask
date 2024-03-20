@@ -1,4 +1,4 @@
-package ru.nstu.galkin.home
+package ru.nstu.galkin.list
 
 import org.junit.Test
 

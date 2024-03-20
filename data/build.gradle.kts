@@ -36,6 +36,8 @@ dependencies {
 
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("com.google.android.material:material:1.11.0")
+
 
     implementation ("io.insert-koin:koin-android:3.5.3")
     implementation ("io.insert-koin:koin-core:3.5.3")
@@ -43,7 +45,9 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
-    implementation("com.google.android.material:material:1.11.0")
+    implementation(project(":core:network"))
+    implementation(project(":features:list"))
+
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
