@@ -13,11 +13,12 @@ class ListViewModel(
 ) : ViewModel() {
 
     private val _users: MutableLiveData<List<User>> = MutableLiveData()
+
     val users: LiveData<List<User>> get() = _users
 
     fun getListUsers() {
         viewModelScope.launch {
-            val listUsers = getUsersUseCase(2)
+            val listUsers = getUsersUseCase(45)
             _users.value = listUsers.users
         }
     }

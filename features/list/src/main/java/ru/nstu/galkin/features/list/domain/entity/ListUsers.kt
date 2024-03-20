@@ -1,5 +1,5 @@
 package ru.nstu.galkin.features.list.domain.entity
 
-data class Users(
+data class ListUsers(
     val users: List<User>
 )

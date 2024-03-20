@@ -10,7 +10,7 @@ import ru.nstu.galkin.features.list.domain.repository.ListUsersRepository
 import ru.nstu.galkin.core.network.createRetrofitService
 import ru.nstu.galkin.core.network.di.RETROFIT
 
-val dataModule = module {
+val dataNetworkModule = module {
 
     factory<ListUsersDataSource> {
         ListUsersDataSourceImpl(api = createRetrofitService<ListUsersApi>(get(named(RETROFIT))))

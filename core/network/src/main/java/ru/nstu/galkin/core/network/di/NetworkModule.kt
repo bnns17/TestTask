@@ -6,7 +6,7 @@ import org.koin.dsl.module
 
 const val RETROFIT = "RETROFIT"
 
-val networkModule = module {
+val coreNetworkModule = module {
 
     single(named(RETROFIT)) {
         Retrofit().newInstance()

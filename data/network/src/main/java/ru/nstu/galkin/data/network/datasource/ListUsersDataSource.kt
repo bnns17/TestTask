@@ -8,7 +8,9 @@ interface ListUsersDataSource {
     suspend fun getListUsers(page: Int): ListUsersModel
 }
 
-class ListUsersDataSourceImpl(private val api: ListUsersApi) : ListUsersDataSource {
+class ListUsersDataSourceImpl(
+    private val api: ListUsersApi
+) : ListUsersDataSource {
 
     override suspend fun getListUsers(page: Int): ListUsersModel =
         api.getListUsers(page)

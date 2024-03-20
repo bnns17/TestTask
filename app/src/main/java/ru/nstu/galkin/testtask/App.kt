@@ -2,9 +2,10 @@ package ru.nstu.galkin.testtask
 
 import android.app.Application
 import org.koin.core.context.startKoin
-import ru.nstu.galkin.data.network.di.dataModule
+import ru.nstu.galkin.data.network.di.dataNetworkModule
 import ru.nstu.galkin.features.list.di.listModule
-import ru.nstu.galkin.core.network.di.networkModule
+import ru.nstu.galkin.core.network.di.coreNetworkModule
+import ru.nstu.galkin.data.database.di.dataDatabaseModule
 
 class App : Application() {
 
@@ -13,12 +14,11 @@ class App : Application() {
 
         startKoin {
             modules(
-                networkModule,
-                dataModule,
-                listModule
+                coreNetworkModule,
+                dataNetworkModule,
+                dataDatabaseModule,
+                listModule,
             )
         }
-
-
     }
 }

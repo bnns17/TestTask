@@ -2,7 +2,7 @@ package ru.nstu.galkin.features.list.domain.repository
 
 import ru.nstu.galkin.features.list.domain.entity.ListUsers
 
-interface ListUsersRepository {
+interface LocalUsersRepository {
 
-    suspend fun getListUsers(page: Int): ListUsers
+    suspend fun saveUsers(users: ListUsers)
 }
