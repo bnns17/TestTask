@@ -1,4 +1,4 @@
-package ru.nstu.galkin.features.list.presentation
+package ru.nstu.galkin.features.list.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,21 +9,29 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import ru.nstu.galkin.list.databinding.ListUserBinding
 import ru.nstu.galkin.list.R
-import ru.nstu.galkin.features.list.domain.entity.User
+import ru.nstu.galkin.shared.domain.entity.User
 
-class UserAdapter : ListAdapter<User, UserAdapter.Holder>(Comparator()) {
-    class Holder(view: View) : RecyclerView.ViewHolder(view){
+class UserAdapter(
+    private val onItemClick: (User) -> Unit,
+    private val onLoadMore: () -> Unit,
+) : ListAdapter<User, UserAdapter.Holder>(Comparator()) {
+
+    class Holder(view: View) : RecyclerView.ViewHolder(view) {
+
         private val binding = ListUserBinding.bind(view)
 
-        fun bind(user: User) = with(binding){
-            nameTextView.text = user.name
-            phoneTextView.text = user.phone
-            locationTextView.text = user.location
-            Picasso.get().load(user.picture).into(userImageView)
-        }
+        fun bind(user: User, onClick: (User) -> Unit) =
+            with(binding) {
+                nameTextView.text = user.name
+                phoneTextView.text = user.phone
+                locationTextView.text = user.location
+                Picasso.get().load(user.picture).into(userImageView)
+                root.setOnClickListener { onClick(user) }
+            }
     }
 
-    class Comparator : DiffUtil.ItemCallback<User>(){
+    class Comparator : DiffUtil.ItemCallback<User>() {
+
         override fun areItemsTheSame(oldItem: User, newItem: User): Boolean {
             return oldItem.id == newItem.id
         }
@@ -39,6 +47,8 @@ class UserAdapter : ListAdapter<User, UserAdapter.Holder>(Comparator()) {
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(getItem(position), onItemClick)
+
+        if (position > itemCount - 10) onLoadMore()
     }
 }

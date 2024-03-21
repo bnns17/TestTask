@@ -1,6 +1,7 @@
 package ru.nstu.galkin.testtask
 
 import android.app.Application
+import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import ru.nstu.galkin.data.network.di.dataNetworkModule
 import ru.nstu.galkin.features.list.di.listModule
@@ -13,6 +14,8 @@ class App : Application() {
         super.onCreate()
 
         startKoin {
+            androidContext(this@App)
+
             modules(
                 coreNetworkModule,
                 dataNetworkModule,

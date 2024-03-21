@@ -53,4 +53,5 @@ dependencies {
     implementation (project(":data:database"))
     implementation(project(":features:list"))
     implementation(project(":features:details"))
+    implementation(project(":shared"))
 }

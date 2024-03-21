@@ -6,7 +6,6 @@ data class UserModel(
     val name: UserNameModel,
     val location: UserLocationModel,
     val email: String,
-//    val id: UserIdModel, //passport
     val phone: String,
     val dob: UserDobModel,
     val picture: UserPictureModel

@@ -1,9 +1,7 @@
 package ru.nstu.galkin.data.network.mapper
 
-import ru.nstu.galkin.data.network.model.user.ListUsersModel
 import ru.nstu.galkin.data.network.model.user.UserModel
-import ru.nstu.galkin.features.list.domain.entity.ListUsers
-import ru.nstu.galkin.features.list.domain.entity.User
+import ru.nstu.galkin.shared.domain.entity.User
 
 fun UserModel.toEntity() =
     User(
@@ -26,8 +24,5 @@ fun UserModel.toEntity() =
         picture = picture.large
     )
 
-
-fun ListUsersModel.toEntity() =
-    ListUsers(
-        users = results.map { it.toEntity() }
-    )
+fun List<UserModel>.toEntity() =
+    map { it.toEntity() }

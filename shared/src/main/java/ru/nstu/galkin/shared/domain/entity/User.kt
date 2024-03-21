@@ -1,4 +1,4 @@
-package ru.nstu.galkin.features.list.domain.entity
+package ru.nstu.galkin.shared.domain.entity
 
 data class User(
     val id: String,

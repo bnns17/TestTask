@@ -5,19 +5,18 @@ import ru.nstu.galkin.data.database.model.UserModel
 
 interface LocalUsersDataSource {
 
-    suspend fun getUserDetail(id: String): UserModel?
-
     suspend fun saveUsers(users: List<UserModel>)
+
+    suspend fun getUsers(): List<UserModel>
 }
 
 class LocalUsersDataSourceImpl(
     private val api: UsersDAO
 ) : LocalUsersDataSource {
-    override suspend fun getUserDetail(id: String): UserModel? =
-        api.getUser(id)
 
-
-    override suspend fun saveUsers(users: List<UserModel>) {
+    override suspend fun saveUsers(users: List<UserModel>) =
         api.insertUsers(users)
-    }
+
+    override suspend fun getUsers(): List<UserModel> =
+        api.getUsers()
 }
