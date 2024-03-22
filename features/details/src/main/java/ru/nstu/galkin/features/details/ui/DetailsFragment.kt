@@ -1,6 +1,8 @@
 package ru.nstu.galkin.features.details.ui
 
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -20,6 +22,7 @@ class DetailsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
+
     ): View {
         _binding = FragmentDetailsBinding.inflate(inflater, container, false)
         return binding.root
@@ -31,7 +34,7 @@ class DetailsFragment : Fragment() {
         setObservers()
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "IntentReset")
     private fun setObservers() {
         activityViewModel.selectedUser.observe(viewLifecycleOwner) { user ->
             with(binding) {
@@ -45,6 +48,31 @@ class DetailsFragment : Fragment() {
                 coordinates.text = "Coordinates: " + user.coordinates
                 phone.text = "Phone: " + user.phone
                 email.text = "Email: " + user.email
+
+                email.setOnClickListener{
+                    val intent = Intent(Intent.ACTION_SEND).apply {
+                        data = Uri.parse("mailto:" + user.email.trim())
+                        type = "text/plain"
+                        putExtra(Intent.EXTRA_EMAIL, user.email.trim())
+                        putExtra(Intent.EXTRA_SUBJECT, "We have a problem")
+                        putExtra(Intent.EXTRA_TEXT,
+                            "This email address does not want to be pasted into the appropriate field, please copy it yourself: "
+                                    + user.email.trim())
+                    }
+                    startActivity(intent)
+                }
+                phone.setOnClickListener{
+                    val intent = Intent(Intent.ACTION_DIAL).apply {
+                        data = Uri.parse("tel:" + user.phone.trim())
+                    }
+                    startActivity(intent)
+                }
+                coordinates.setOnClickListener{
+                    val intent = Intent(Intent.ACTION_VIEW).apply {
+                        data = Uri.parse("geo:" + user.coordinates.trim())
+                    }
+                    startActivity(intent)
+                }
             }
         }
     }
