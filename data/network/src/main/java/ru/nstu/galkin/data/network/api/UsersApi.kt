@@ -5,6 +5,6 @@ import retrofit2.http.Query
 import ru.nstu.galkin.data.network.model.user.UsersModel
 
 interface UsersApi {
-    @GET("/api/?results=30&seed=tsttsk")
-    suspend fun getListUsers(@Query("page") page: Int): UsersModel
+    @GET("/api/?results=30")
+    suspend fun getListUsers(@Query("page") page: Int, @Query("seed") seed: Int): UsersModel
 }

@@ -5,13 +5,13 @@ import ru.nstu.galkin.data.network.model.user.UserModel
 
 interface UsersDataSource {
 
-    suspend fun getUsers(page: Int): List<UserModel>
+    suspend fun getUsers(page: Int, seed: Int): List<UserModel>
 }
 
 class UsersDataSourceImpl(
     private val api: UsersApi
 ) : UsersDataSource {
 
-    override suspend fun getUsers(page: Int): List<UserModel> =
-        api.getListUsers(page).results
+    override suspend fun getUsers(page: Int, seed: Int): List<UserModel> =
+        api.getListUsers(page, seed).results
 }

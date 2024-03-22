@@ -3,6 +3,8 @@ package ru.nstu.galkin.features.list.ui
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -40,6 +42,7 @@ class ListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setAdapter()
+        setListeners()
         setObservers()
     }
 
@@ -61,33 +64,40 @@ class ListFragment : Fragment() {
         viewModel.state.observe(viewLifecycleOwner, ::handleState)
     }
 
-    private fun setListener() {
-
+    private fun setListeners() {
+        binding.refreshButton.setOnClickListener {
+            viewModel.updateUsers()
+        }
     }
 
     private fun handleState(state: ListState) {
         when (state) {
             is ListState.Initial,
             is ListState.InitialLoading -> showLoading()
-            is ListState.Content        -> showContent(state)
-            is ListState.Error          -> showError()
+
+            is ListState.Content -> showContent(state)
+
+            is ListState.Error -> {
+                showError()
+                viewModel.getUsers()
+            }
         }
     }
 
     private fun showLoading() {
-        //TODO(добавить прогресс бар на весь экран)
+        binding.progressBar.visibility = VISIBLE
+        binding.content.visibility = GONE
     }
 
     private fun showContent(state: ListState.Content) {
         when (state.status) {
+            ListStatus.LOADING,
             ListStatus.CONTENT -> {
+                binding.content.visibility = VISIBLE
                 adapter.submitList(state.users)
             }
 
-            ListStatus.LOADING -> {/*TODO(добавить прогресс бар ниже ресайклера)*/
-            }
-
-            ListStatus.ERROR   -> {
+            ListStatus.ERROR -> {
                 showError()
             }
         }

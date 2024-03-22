@@ -5,4 +5,4 @@ import ru.nstu.galkin.shared.domain.entity.User
 
 class GetNetworkUsersUseCase(
     private val repository: NetworkUsersRepository
-) : suspend (Int) -> List<User> by repository::getUsers
+) : suspend (Int, Int) -> List<User> by repository::getUsers

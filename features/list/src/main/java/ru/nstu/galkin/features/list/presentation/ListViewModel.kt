@@ -11,6 +11,8 @@ import kotlinx.coroutines.launch
 import ru.nstu.galkin.features.list.domain.usecases.ClearUsersUseCase
 import ru.nstu.galkin.features.list.domain.usecases.GetLocalUsersUseCase
 import ru.nstu.galkin.features.list.domain.usecases.GetNetworkUsersUseCase
+import ru.nstu.galkin.features.list.domain.usecases.GetSeedUseCase
+import ru.nstu.galkin.features.list.domain.usecases.SaveSeedUseCase
 import ru.nstu.galkin.features.list.domain.usecases.SaveUsersUseCase
 import ru.nstu.galkin.features.list.presentation.state.ListState
 import ru.nstu.galkin.features.list.presentation.state.ListStatus
@@ -22,7 +24,10 @@ class ListViewModel(
     private val getLocalUsersUseCase: GetLocalUsersUseCase,
     private val saveUsersUseCase: SaveUsersUseCase,
     private val clearUsersUseCase: ClearUsersUseCase,
-) : ViewModel() {
+    private val saveSeedUseCase: SaveSeedUseCase,
+    private val getSeedUseCase: GetSeedUseCase,
+
+    ) : ViewModel() {
 
     private companion object {
 
@@ -65,11 +70,12 @@ class ListViewModel(
             )
         }
     }
-    private fun updateUsers(){
 
-    }
+
     private suspend fun loadNetworkUsers(page: Int, users: List<User>) {
-        val newUsers = getNetworkUsersUseCase(page)
+        val seed = getSeedUseCase()
+
+        val newUsers = getNetworkUsersUseCase(page, seed)
 
         _state.value = ListState.Content(
             currentPage = page,
@@ -91,10 +97,19 @@ class ListViewModel(
         }
     }
 
-    private fun clearUsers(){
-        viewModelScope.launch(contentLoadingHandler) {
+    fun updateUsers() {
+        _state.value = ListState.InitialLoading
+
+        viewModelScope.launch(initialLoadingHandler) {
+            generateNewSeed()
             clearUsersUseCase()
+            loadNetworkUsers(FIRST_PAGE, emptyList())
         }
+    }
+
+    private suspend fun generateNewSeed() {
+        val newSeed = getSeedUseCase() + 1
+        saveSeedUseCase(newSeed)
     }
 
     fun navigateToDetails(navController: NavController) {

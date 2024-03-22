@@ -7,6 +7,6 @@ import ru.nstu.galkin.shared.domain.entity.User
 
 class ListUsersRepositoryImpl(private val dataSource: UsersDataSource) : NetworkUsersRepository {
 
-    override suspend fun getUsers(page: Int): List<User> =
-        dataSource.getUsers(page).toEntity()
+    override suspend fun getUsers(page: Int, seed: Int): List<User> =
+        dataSource.getUsers(page, seed).toEntity()
 }

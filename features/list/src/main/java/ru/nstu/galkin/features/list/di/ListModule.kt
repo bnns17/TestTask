@@ -5,6 +5,8 @@ import org.koin.dsl.module
 import ru.nstu.galkin.features.list.domain.usecases.ClearUsersUseCase
 import ru.nstu.galkin.features.list.domain.usecases.GetLocalUsersUseCase
 import ru.nstu.galkin.features.list.domain.usecases.GetNetworkUsersUseCase
+import ru.nstu.galkin.features.list.domain.usecases.GetSeedUseCase
+import ru.nstu.galkin.features.list.domain.usecases.SaveSeedUseCase
 import ru.nstu.galkin.features.list.domain.usecases.SaveUsersUseCase
 import ru.nstu.galkin.features.list.presentation.ListViewModel
 
@@ -26,12 +28,22 @@ val listModule = module {
         ClearUsersUseCase(repository = get())
     }
 
+    factory {
+        SaveSeedUseCase(repository = get())
+    }
+
+    factory {
+        GetSeedUseCase(repository = get())
+    }
+
     viewModel {
         ListViewModel(
             getNetworkUsersUseCase = get(),
             getLocalUsersUseCase = get(),
             saveUsersUseCase = get(),
-            clearUsersUseCase = get()
+            clearUsersUseCase = get(),
+            saveSeedUseCase = get(),
+            getSeedUseCase = get(),
         )
     }
 }

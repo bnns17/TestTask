@@ -6,26 +6,48 @@
     android:layout_height="match_parent"
     tools:context="ru.nstu.galkin.features.list.ui.ListFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="visible" />
 
-        <LinearLayout
-            android:id="@+id/linearLayout"
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#D7D6E8"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/sortAndFilterButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:padding="8dp">
+
+            <Button
+                android:id="@+id/refreshButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#665BA6"
+                android:text="Refresh"
+                android:textColor="#FBFBFB" />
+
+        </FrameLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_gravity="end"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:background="#D7D6E8" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycleView"
-                android:layout_width="411dp"
-                android:layout_height="650dp"
-                android:layout_gravity="end"
-                android:layout_marginLeft="3dp"
-                android:layout_marginRight="3dp"
-                android:background="#D7D6E8" />
-        </LinearLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 </FrameLayout>

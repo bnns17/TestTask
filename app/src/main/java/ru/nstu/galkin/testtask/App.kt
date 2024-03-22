@@ -7,6 +7,7 @@ import ru.nstu.galkin.data.network.di.dataNetworkModule
 import ru.nstu.galkin.features.list.di.listModule
 import ru.nstu.galkin.core.network.di.coreNetworkModule
 import ru.nstu.galkin.data.database.di.dataDatabaseModule
+import ru.nstu.galkin.preferences.di.preferencesModule
 
 class App : Application() {
 
@@ -20,6 +21,7 @@ class App : Application() {
                 coreNetworkModule,
                 dataNetworkModule,
                 dataDatabaseModule,
+                preferencesModule,
                 listModule,
             )
         }

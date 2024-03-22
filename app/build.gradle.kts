@@ -51,6 +51,7 @@ dependencies {
     implementation (project(":core:network"))
     implementation (project(":data:network"))
     implementation (project(":data:database"))
+    implementation (project(":data:preferences"))
     implementation(project(":features:list"))
     implementation(project(":features:details"))
     implementation(project(":shared"))
