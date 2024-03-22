@@ -7,4 +7,6 @@ interface LocalUsersRepository {
     suspend fun saveUsers(users: List<User>)
 
     suspend fun getUsers() : List<User>
+
+    suspend fun deleteUsers()
 }

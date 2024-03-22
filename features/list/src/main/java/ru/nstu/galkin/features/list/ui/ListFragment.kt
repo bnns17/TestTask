@@ -61,6 +61,10 @@ class ListFragment : Fragment() {
         viewModel.state.observe(viewLifecycleOwner, ::handleState)
     }
 
+    private fun setListener() {
+
+    }
+
     private fun handleState(state: ListState) {
         when (state) {
             is ListState.Initial,
@@ -97,4 +101,6 @@ class ListFragment : Fragment() {
         super.onDestroy()
         _binding = null
     }
+
+
 }

@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.launch
+import ru.nstu.galkin.features.list.domain.usecases.ClearUsersUseCase
 import ru.nstu.galkin.features.list.domain.usecases.GetLocalUsersUseCase
 import ru.nstu.galkin.features.list.domain.usecases.GetNetworkUsersUseCase
 import ru.nstu.galkin.features.list.domain.usecases.SaveUsersUseCase
@@ -20,6 +21,7 @@ class ListViewModel(
     private val getNetworkUsersUseCase: GetNetworkUsersUseCase,
     private val getLocalUsersUseCase: GetLocalUsersUseCase,
     private val saveUsersUseCase: SaveUsersUseCase,
+    private val clearUsersUseCase: ClearUsersUseCase,
 ) : ViewModel() {
 
     private companion object {
@@ -63,7 +65,9 @@ class ListViewModel(
             )
         }
     }
+    private fun updateUsers(){
 
+    }
     private suspend fun loadNetworkUsers(page: Int, users: List<User>) {
         val newUsers = getNetworkUsersUseCase(page)
 
@@ -84,6 +88,12 @@ class ListViewModel(
 
         viewModelScope.launch(contentLoadingHandler) {
             loadNetworkUsers(currentState.currentPage + 1, currentState.users)
+        }
+    }
+
+    private fun clearUsers(){
+        viewModelScope.launch(contentLoadingHandler) {
+            clearUsersUseCase()
         }
     }
 

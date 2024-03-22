@@ -73,7 +73,9 @@ class DetailsFragment : Fragment() {
                     }
                     startActivity(intent)
                 }
+
             }
         }
     }
+
 }

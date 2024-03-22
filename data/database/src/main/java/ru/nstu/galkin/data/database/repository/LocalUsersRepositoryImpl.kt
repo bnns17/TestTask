@@ -15,4 +15,8 @@ class LocalUsersRepositoryImpl(
 
     override suspend fun getUsers(): List<User> =
         datasource.getUsers().toEntity()
+
+    override suspend fun deleteUsers() =
+        datasource.deleteUsers()
+
 }

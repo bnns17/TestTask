@@ -86,7 +86,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="24dp"
                 android:layout_marginVertical="12dp"
-                android:textColor="@color/design_default_color_on_secondary"
+                android:textColor="#3E65DA"
                 android:textSize="16sp"
                 android:clickable="true"
                 android:focusable="true" />
@@ -97,7 +97,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="24dp"
                 android:layout_marginVertical="12dp"
-                android:textColor="@color/design_default_color_on_secondary"
+                android:textColor="#3E65DA"
                 android:textSize="16sp"
                 android:clickable="true"
                 android:focusable="true"/>
@@ -108,10 +108,10 @@
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="24dp"
                 android:layout_marginVertical="12dp"
-                android:textColor="@color/design_default_color_on_secondary"
-                android:textSize="16sp"
                 android:clickable="true"
-                android:focusable="true"/>
+                android:focusable="true"
+                android:textColor="#3E65DA"
+                android:textSize="16sp" />
         </LinearLayout>
     </ScrollView>
 </FrameLayout>

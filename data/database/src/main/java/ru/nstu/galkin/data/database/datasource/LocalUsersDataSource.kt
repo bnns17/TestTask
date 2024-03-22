@@ -8,6 +8,8 @@ interface LocalUsersDataSource {
     suspend fun saveUsers(users: List<UserModel>)
 
     suspend fun getUsers(): List<UserModel>
+
+    suspend fun deleteUsers()
 }
 
 class LocalUsersDataSourceImpl(
@@ -19,4 +21,7 @@ class LocalUsersDataSourceImpl(
 
     override suspend fun getUsers(): List<UserModel> =
         api.getUsers()
+
+    override suspend fun deleteUsers() =
+        api.deleteUsers()
 }
